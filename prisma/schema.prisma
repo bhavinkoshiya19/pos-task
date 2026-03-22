@@ -1,0 +1,317 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  STAFF
+}
+
+model User {
+  id        String   @id @default(uuid())
+  name      String
+  email     String   @unique
+  password  String
+  role      Role     @default(STAFF)
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  membershipsSold    CustomerMembership[] @relation("SoldBy")
+  transactions       Transaction[]
+  loyaltyRedemptions LoyaltyRedemption[]
+
+  @@map("users")
+}
+
+model Customer {
+  id          String    @id @default(uuid())
+  name        String
+  mobile      String    @unique
+  email       String?   @unique
+  address     String?
+  dateOfBirth DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  memberships   CustomerMembership[]
+  loyaltyWallet LoyaltyWallet?
+  transactions  Transaction[]
+  pointsHistory LoyaltyPointsHistory[]
+  notifications Notification[]
+
+  @@map("customers")
+}
+
+// --- membership ---
+
+enum DurationType {
+  MONTHLY
+  QUARTERLY
+  YEARLY
+  CUSTOM
+}
+
+enum MembershipPlanStatus {
+  ACTIVE
+  INACTIVE
+}
+
+model MembershipPlan {
+  id          String               @id @default(uuid())
+  name        String
+  description String?
+  price       Float
+  currency    String               @default("INR")
+
+  durationType DurationType
+  customDays   Int?
+
+  serviceDiscountPercent Float?  @default(0)
+  productDiscountPercent Float?  @default(0)
+  flatDiscountPerBill    Float?  @default(0)
+  freeServiceCredits     Int?    @default(0)
+  freeProductCredits     Int?    @default(0)
+  rewardPointsMultiplier Float?  @default(1)
+  memberOnlyPricing      Boolean @default(false)
+
+  maxServicesPerMonth Int?
+  maxDiscountsPerBill Int?
+  totalUsageCap       Int?
+
+  applicableOutlets    String[]
+  applicableCategories String[]
+  applicableStaff      String[]
+
+  autoRenew           Boolean @default(false)
+  renewalReminderDays Int?    @default(7)
+
+  status    MembershipPlanStatus @default(ACTIVE)
+  createdAt DateTime             @default(now())
+  updatedAt DateTime             @updatedAt
+
+  customerMemberships CustomerMembership[]
+
+  @@map("membership_plans")
+}
+
+enum CustomerMembershipStatus {
+  ACTIVE
+  EXPIRED
+  CANCELLED
+  FROZEN
+}
+
+model CustomerMembership {
+  id           String                   @id @default(uuid())
+  membershipId String                   @unique @default(uuid())
+  customerId   String
+  planId       String
+  soldByUserId String?
+
+  startDate      DateTime
+  expiryDate     DateTime
+  frozenAt       DateTime?
+  frozenDaysUsed Int                    @default(0)
+
+  status CustomerMembershipStatus       @default(ACTIVE)
+
+  servicesUsedThisMonth Int             @default(0)
+  totalUsageCount       Int             @default(0)
+  freeServicesUsed      Int             @default(0)
+  freeProductsUsed      Int             @default(0)
+
+  paymentAmount Float
+  paymentMethod String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  customer      Customer                 @relation(fields: [customerId], references: [id])
+  plan          MembershipPlan           @relation(fields: [planId], references: [id])
+  soldBy        User?                    @relation("SoldBy", fields: [soldByUserId], references: [id])
+  benefitUsages MembershipBenefitUsage[]
+
+  @@map("customer_memberships")
+}
+
+model MembershipBenefitUsage {
+  id                   String   @id @default(uuid())
+  customerMembershipId String
+  benefitType          String
+  discountAmount       Float?
+  transactionId        String?
+  usedAt               DateTime @default(now())
+
+  customerMembership CustomerMembership @relation(fields: [customerMembershipId], references: [id])
+
+  @@map("membership_benefit_usages")
+}
+
+// --- loyalty ---
+
+model LoyaltyProgram {
+  id       String  @id @default(uuid())
+  name     String  @default("Default Loyalty Program")
+  isActive Boolean @default(true)
+
+  pointsPerSpendRatio      Float    @default(10)
+  spendAmountForRatio      Float    @default(100)
+  categoryEarningRules     Json?
+  includedProducts         String[]
+  includedServices         String[]
+
+  pointToCurrencyRate      Float   @default(1)
+  minRedeemablePoints      Int     @default(100)
+  maxRedeemablePerBill     Float?
+  partialRedemptionAllowed Boolean @default(true)
+
+  pointsValidityDays     Int?    @default(365)
+  expiryNotificationDays Int?    @default(30)
+  gracePeriodDays        Int?    @default(0)
+
+  doublePointsDays         String[]
+  birthdayBonusPoints      Int?   @default(0)
+  referralBonusPoints      Int?   @default(0)
+  firstPurchaseBonusPoints Int?   @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("loyalty_programs")
+}
+
+model LoyaltyWallet {
+  id                     String   @id @default(uuid())
+  customerId             String   @unique
+  availablePoints        Int      @default(0)
+  lifetimeEarnedPoints   Int      @default(0)
+  lifetimeRedeemedPoints Int      @default(0)
+  createdAt              DateTime @default(now())
+  updatedAt              DateTime @updatedAt
+
+  customer Customer @relation(fields: [customerId], references: [id])
+
+  @@map("loyalty_wallets")
+}
+
+enum PointsHistoryType {
+  EARNED
+  REDEEMED
+  EXPIRED
+  BONUS
+  REFERRAL
+  BIRTHDAY
+  FIRST_PURCHASE
+}
+
+model LoyaltyPointsHistory {
+  id            String            @id @default(uuid())
+  customerId    String
+  points        Int
+  type          PointsHistoryType
+  description   String?
+  transactionId String?
+  expiresAt     DateTime?
+  createdAt     DateTime          @default(now())
+
+  customer Customer @relation(fields: [customerId], references: [id])
+
+  @@map("loyalty_points_history")
+}
+
+model LoyaltyRedemption {
+  id               String   @id @default(uuid())
+  customerId       String
+  pointsRedeemed   Int
+  currencyValue    Float
+  transactionId    String?
+  redeemedByUserId String?
+  createdAt        DateTime @default(now())
+
+  redeemedBy User? @relation(fields: [redeemedByUserId], references: [id])
+
+  @@map("loyalty_redemptions")
+}
+
+// --- billing ---
+
+model Transaction {
+  id                String  @id @default(uuid())
+  customerId        String?
+  processedByUserId String?
+
+  billAmount         Float
+  membershipDiscount Float   @default(0)
+  loyaltyDiscount    Float   @default(0)
+  otherDiscount      Float   @default(0)
+  finalPayable       Float
+
+  items          TransactionItem[]
+  pointsEarned   Int    @default(0)
+  pointsRedeemed Int    @default(0)
+
+  paymentMethod String?
+  invoiceNumber String  @unique @default(uuid())
+
+  createdAt DateTime @default(now())
+
+  customer    Customer? @relation(fields: [customerId], references: [id])
+  processedBy User?     @relation(fields: [processedByUserId], references: [id])
+
+  @@map("transactions")
+}
+
+model TransactionItem {
+  id            String @id @default(uuid())
+  transactionId String
+  itemType      String
+  itemName      String
+  quantity      Int    @default(1)
+  unitPrice     Float
+  discount      Float  @default(0)
+  finalPrice    Float
+
+  transaction Transaction @relation(fields: [transactionId], references: [id])
+
+  @@map("transaction_items")
+}
+
+// --- notifications ---
+
+enum NotificationChannel {
+  SMS
+  EMAIL
+  WHATSAPP
+}
+
+enum NotificationType {
+  MEMBERSHIP_PURCHASE
+  MEMBERSHIP_EXPIRY
+  RENEWAL_REMINDER
+  POINTS_EARNED
+  POINTS_EXPIRY
+  BIRTHDAY_REWARD
+  PROMOTIONAL
+}
+
+model Notification {
+  id         String              @id @default(uuid())
+  customerId String
+  type       NotificationType
+  channel    NotificationChannel
+  title      String
+  message    String
+  sentAt     DateTime?
+  isSent     Boolean             @default(false)
+  createdAt  DateTime            @default(now())
+
+  customer Customer @relation(fields: [customerId], references: [id])
+
+  @@map("notifications")
+}
