@@ -24,16 +24,16 @@ const createPlanSchema = Joi.object({
   applicableStaff: Joi.array().items(Joi.string()).default([]),
   autoRenew: Joi.boolean().default(false),
   renewalReminderDays: Joi.number().integer().min(1).default(7),
-});
+}).required();
 
 const enrollSchema = Joi.object({
   customerId: Joi.string().uuid().required(),
   planId: Joi.string().uuid().required(),
   paymentMethod: Joi.string().allow('', null),
-});
+}).required();
 
 const idParamSchema = Joi.object({
   id: Joi.string().uuid().required(),
-});
+}).required();
 
 module.exports = { createPlanSchema, enrollSchema, idParamSchema };

@@ -14,11 +14,11 @@ const configureProgramSchema = Joi.object({
   birthdayBonusPoints: Joi.number().integer().min(0),
   referralBonusPoints: Joi.number().integer().min(0),
   firstPurchaseBonusPoints: Joi.number().integer().min(0),
-});
+}).required();
 
 const redeemPointsSchema = Joi.object({
   customerId: Joi.string().uuid().required(),
   points: Joi.number().integer().min(1).required(),
-});
+}).required();
 
 module.exports = { configureProgramSchema, redeemPointsSchema };

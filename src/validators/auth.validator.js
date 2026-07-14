@@ -5,11 +5,11 @@ const registerSchema = Joi.object({
   email: Joi.string().email().required(),
   password: Joi.string().min(6).required(),
   role: Joi.string().valid('ADMIN', 'STAFF').default('STAFF'),
-});
+}).required();
 
 const loginSchema = Joi.object({
   email: Joi.string().email().required(),
   password: Joi.string().required(),
-});
+}).required();
 
 module.exports = { registerSchema, loginSchema };

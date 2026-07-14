@@ -1,0 +1,1519 @@
+{
+  "info": {
+    "_postman_id": "3218576d-b1ce-4fb3-a174-8a3bcb5e2872",
+    "name": "Membership and Loyalty-System",
+    "description": "Complete API collection for POS Membership & Client Loyalty System",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "30053237"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Bhavin\",\n  \"email\": \"bhavin.koshiya@gmail.com\",\n  \"password\": \"bhavin@123\",\n  \"role\": \"ADMIN\"\n\n//   \"name\": \"Staff 2\",\n//   \"email\": \"staff2@gmail.com\",\n//   \"password\": \"staff123\",\n//   \"role\": \"STAFF\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/v1/auth/register",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"bhavin.koshiya@gmail.com\",\n  \"password\": \"bhavin@123\"\n\n//    \"email\": \"staff@gmail.com\",\n//   \"password\": \"staff123\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/v1/auth/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Login User",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjNDMwZWI5ZC04ZDE1LTRjNWItYjNiZS1iZDI3YTExNTE3ODUiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NzQxNzA1MjEsImV4cCI6MTc3NDI1NjkyMX0.X6IFGWsnE-65jyave3oxjAvxfIw3d8zpJoorEo_DLBE"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:3000/api/v1/auth/me",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "me"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Customers",
+      "item": [
+        {
+          "name": "Create Customer",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI5NTRjMzRjZi1hNWFkLTQ3ZGQtOTg3OC1lZGJkMWMzZDI1NWMiLCJyb2xlIjoiU1RBRkYiLCJpYXQiOjE3NzQxNzA3NTQsImV4cCI6MTc3NDI1NzE1NH0.UmC_z1bUbBtwm3KZKm2GJQvGaqgsYhxwyOR0ebcyhSs"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"parth koshiya\",\n  \"mobile\": \"9876543210\",\n  \"email\": \"parth.koshiya@gmail.com\",\n  \"address\": \"surat\",\n  \"dateOfBirth\": \"1998-03-20\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/v1/customers/add",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "v1",
+                "customers",
+                "add"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Customers",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI5NTRjMzRjZi1hNWFkLTQ3ZGQtOTg3OC1lZGJkMWMzZDI1NWMiLCJyb2xlIjoiU1RBRkYiLCJpYXQiOjE3NzQxNzA3NTQsImV4cCI6MTc3NDI1NzE1NH0.UmC_z1bUbBtwm3KZKm2GJQvGaqgsYhxwyOR0ebcyhSs"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:3000/api/v1/customers/all?page=1&limit=20",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "v1",
+                "customers",
+                "all"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "key": "search",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Customer by ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI5NTRjMzRjZi1hNWFkLTQ3ZGQtOTg3OC1lZGJkMWMzZDI1NWMiLCJyb2xlIjoiU1RBRkYiLCJpYXQiOjE3NzQxNzA3NTQsImV4cCI6MTc3NDI1NzE1NH0.UmC_z1bUbBtwm3KZKm2GJQvGaqgsYhxwyOR0ebcyhSs"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:3000/api/v1/customers/:id",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "v1",
+                "customers",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "fb991cbd-1f4d-4d4f-8423-0c3328451b01"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Customer",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI5NTRjMzRjZi1hNWFkLTQ3ZGQtOTg3OC1lZGJkMWMzZDI1NWMiLCJyb2xlIjoiU1RBRkYiLCJpYXQiOjE3NzQxNzA3NTQsImV4cCI6MTc3NDI1NzE1NH0.UmC_z1bUbBtwm3KZKm2GJQvGaqgsYhxwyOR0ebcyhSs"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Parth Koshiya\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/v1/customers/:id",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "v1",
+                "customers",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "fb991cbd-1f4d-4d4f-8423-0c3328451b00"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Customer Profile",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI5NTRjMzRjZi1hNWFkLTQ3ZGQtOTg3OC1lZGJkMWMzZDI1NWMiLCJyb2xlIjoiU1RBRkYiLCJpYXQiOjE3NzQxNzA3NTQsImV4cCI6MTc3NDI1NzE1NH0.UmC_z1bUbBtwm3KZKm2GJQvGaqgsYhxwyOR0ebcyhSs"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:3000/api/v1/customers/:id/profile",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "v1",
+                "customers",
+                ":id",
+                "profile"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "fb991cbd-1f4d-4d4f-8423-0c3328451b00"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Membership Plans",
+      "item": [
+        {
+          "name": "Create Plan",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjNDMwZWI5ZC04ZDE1LTRjNWItYjNiZS1iZDI3YTExNTE3ODUiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NzQxNzA2ODIsImV4cCI6MTc3NDI1NzA4Mn0.nQVCZ5XZEvup-GtS48tWErXeiI5aWKxXd23vky2iDbE"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Plan 1\",\n  \"description\": \" description of plan1\",\n  \"price\": 2499,\n  \"durationType\": \"QUARTERLY\",\n  \"serviceDiscountPercent\": 20,\n  \"productDiscountPercent\": 15,\n  \"flatDiscountPerBill\": 50,\n  \"freeServiceCredits\": 3,\n  \"freeProductCredits\": 2,\n  \"rewardPointsMultiplier\": 2,\n  \"maxServicesPerMonth\": 20,\n  \"applicableOutlets\": [\"ALL\"],\n  \"applicableCategories\": [\"SERVICES\", \"PRODUCTS\"],\n  \"autoRenew\": true,\n  \"renewalReminderDays\": 14\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/v1/memberships/plans",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "v1",
+                "memberships",
+                "plans"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Plans",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI5NTRjMzRjZi1hNWFkLTQ3ZGQtOTg3OC1lZGJkMWMzZDI1NWMiLCJyb2xlIjoiU1RBRkYiLCJpYXQiOjE3NzQxNzA3NTQsImV4cCI6MTc3NDI1NzE1NH0.UmC_z1bUbBtwm3KZKm2GJQvGaqgsYhxwyOR0ebcyhSs"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:3000/api/v1/memberships/plans",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "v1",
+                "memberships",
+                "plans"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "ACTIVE",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Plan by ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI5NTRjMzRjZi1hNWFkLTQ3ZGQtOTg3OC1lZGJkMWMzZDI1NWMiLCJyb2xlIjoiU1RBRkYiLCJpYXQiOjE3NzQxNzA3NTQsImV4cCI6MTc3NDI1NzE1NH0.UmC_z1bUbBtwm3KZKm2GJQvGaqgsYhxwyOR0ebcyhSs"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:3000/api/v1/memberships/plans/:id",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "v1",
+                "memberships",
+                "plans",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "a4d1a732-6d11-4a63-89eb-e987d130b6e4"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Plan",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjNDMwZWI5ZC04ZDE1LTRjNWItYjNiZS1iZDI3YTExNTE3ODUiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NzQxNzA2ODIsImV4cCI6MTc3NDI1NzA4Mn0.nQVCZ5XZEvup-GtS48tWErXeiI5aWKxXd23vky2iDbE"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"price\": 2999,\n  \"description\": \"description of plan with higher discounts...\",\n  \"serviceDiscountPercent\": 25\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/v1/memberships/plans/:id",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "v1",
+                "memberships",
+                "plans",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "a4d1a732-6d11-4a63-89eb-e987d130b6e4"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Plan",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjNDMwZWI5ZC04ZDE1LTRjNWItYjNiZS1iZDI3YTExNTE3ODUiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NzQxNzA2ODIsImV4cCI6MTc3NDI1NzA4Mn0.nQVCZ5XZEvup-GtS48tWErXeiI5aWKxXd23vky2iDbE"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:3000/api/v1/memberships/plans/:id",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "v1",
+                "memberships",
+                "plans",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "a4d1a732-6d11-4a63-89eb-e987d130b6e4"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Membership Enrollment & Lifecycle",
+      "item": [
+        {
+          "name": "Enroll Membership Plan By Customer",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjNDMwZWI5ZC04ZDE1LTRjNWItYjNiZS1iZDI3YTExNTE3ODUiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NzQxNzA2ODIsImV4cCI6MTc3NDI1NzA4Mn0.nQVCZ5XZEvup-GtS48tWErXeiI5aWKxXd23vky2iDbE"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customerId\": \"fb991cbd-1f4d-4d4f-8423-0c3328451b00\",\n  \"planId\": \"4c08e77b-d100-44dc-963e-429f8727756f\",\n  \"paymentMethod\": \"CASH\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/v1/memberships/enroll",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "v1",
+                "memberships",
+                "enroll"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Membership by ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjNDMwZWI5ZC04ZDE1LTRjNWItYjNiZS1iZDI3YTExNTE3ODUiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NzQxNzA2ODIsImV4cCI6MTc3NDI1NzA4Mn0.nQVCZ5XZEvup-GtS48tWErXeiI5aWKxXd23vky2iDbE"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:3000/api/v1/memberships/:id",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "v1",
+                "memberships",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "b045d669-9dd3-4f4a-a572-407324f7dab2"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Customer Memberships",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjNDMwZWI5ZC04ZDE1LTRjNWItYjNiZS1iZDI3YTExNTE3ODUiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NzQxNzA2ODIsImV4cCI6MTc3NDI1NzA4Mn0.nQVCZ5XZEvup-GtS48tWErXeiI5aWKxXd23vky2iDbE"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:3000/api/v1/memberships/customer/:customerId",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "v1",
+                "memberships",
+                "customer",
+                ":customerId"
+              ],
+              "variable": [
+                {
+                  "key": "customerId",
+                  "value": "fb991cbd-1f4d-4d4f-8423-0c3328451b00"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Renew Membership",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjNDMwZWI5ZC04ZDE1LTRjNWItYjNiZS1iZDI3YTExNTE3ODUiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NzQxNzA2ODIsImV4cCI6MTc3NDI1NzA4Mn0.nQVCZ5XZEvup-GtS48tWErXeiI5aWKxXd23vky2iDbE"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:3000/api/v1/memberships/:id/renew",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "v1",
+                "memberships",
+                ":id",
+                "renew"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "b045d669-9dd3-4f4a-a572-407324f7dab2"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Upgrade Membership",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjNDMwZWI5ZC04ZDE1LTRjNWItYjNiZS1iZDI3YTExNTE3ODUiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NzQxNzA2ODIsImV4cCI6MTc3NDI1NzA4Mn0.nQVCZ5XZEvup-GtS48tWErXeiI5aWKxXd23vky2iDbE"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"newPlanId\": \"4c08e77b-d100-44dc-963e-429f8727756f\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/v1/memberships/:id/upgrade",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "v1",
+                "memberships",
+                ":id",
+                "upgrade"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "b045d669-9dd3-4f4a-a572-407324f7dab2"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Freeze Membership",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjNDMwZWI5ZC04ZDE1LTRjNWItYjNiZS1iZDI3YTExNTE3ODUiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NzQxNzA2ODIsImV4cCI6MTc3NDI1NzA4Mn0.nQVCZ5XZEvup-GtS48tWErXeiI5aWKxXd23vky2iDbE"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:3000/api/v1/memberships/:id/freeze",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "v1",
+                "memberships",
+                ":id",
+                "freeze"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "b045d669-9dd3-4f4a-a572-407324f7dab2"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Unfreeze Membership",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjNDMwZWI5ZC04ZDE1LTRjNWItYjNiZS1iZDI3YTExNTE3ODUiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NzQxNzA2ODIsImV4cCI6MTc3NDI1NzA4Mn0.nQVCZ5XZEvup-GtS48tWErXeiI5aWKxXd23vky2iDbE"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:3000/api/v1/memberships/:id/unfreeze",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "v1",
+                "memberships",
+                ":id",
+                "unfreeze"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "b045d669-9dd3-4f4a-a572-407324f7dab2"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Cancel Membership",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjNDMwZWI5ZC04ZDE1LTRjNWItYjNiZS1iZDI3YTExNTE3ODUiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NzQxNzA2ODIsImV4cCI6MTc3NDI1NzA4Mn0.nQVCZ5XZEvup-GtS48tWErXeiI5aWKxXd23vky2iDbE"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:3000/api/v1/memberships/:id/cancel",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "v1",
+                "memberships",
+                ":id",
+                "cancel"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "5a14e91a-dc03-49db-90b6-fa01cdc0c3d0"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Loyalty Program",
+      "item": [
+        {
+          "name": "Get Loyalty Program",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjNDMwZWI5ZC04ZDE1LTRjNWItYjNiZS1iZDI3YTExNTE3ODUiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NzQxNzA2ODIsImV4cCI6MTc3NDI1NzA4Mn0.nQVCZ5XZEvup-GtS48tWErXeiI5aWKxXd23vky2iDbE"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:3000/api/v1/loyalty",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "v1",
+                "loyalty"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Configure Program",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjNDMwZWI5ZC04ZDE1LTRjNWItYjNiZS1iZDI3YTExNTE3ODUiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NzQxNzA2ODIsImV4cCI6MTc3NDI1NzA4Mn0.nQVCZ5XZEvup-GtS48tWErXeiI5aWKxXd23vky2iDbE"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"pointsPerSpendRatio\": 10,\n  \"spendAmountForRatio\": 100,\n  \"pointToCurrencyRate\": 1,\n  \"minRedeemablePoints\": 100,\n  \"maxRedeemablePerBill\": 500,\n  \"pointsValidityDays\": 365,\n  \"birthdayBonusPoints\": 100,\n  \"referralBonusPoints\": 50,\n  \"firstPurchaseBonusPoints\": 25\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/v1/loyalty/update",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "v1",
+                "loyalty",
+                "update"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Customer Wallet",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjNDMwZWI5ZC04ZDE1LTRjNWItYjNiZS1iZDI3YTExNTE3ODUiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NzQxNzA2ODIsImV4cCI6MTc3NDI1NzA4Mn0.nQVCZ5XZEvup-GtS48tWErXeiI5aWKxXd23vky2iDbE"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:3000/api/v1/loyalty/wallet/:customrId",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "v1",
+                "loyalty",
+                "wallet",
+                ":customrId"
+              ],
+              "variable": [
+                {
+                  "key": "customrId",
+                  "value": "fb991cbd-1f4d-4d4f-8423-0c3328451b00"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Points History",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjNDMwZWI5ZC04ZDE1LTRjNWItYjNiZS1iZDI3YTExNTE3ODUiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NzQxNzA2ODIsImV4cCI6MTc3NDI1NzA4Mn0.nQVCZ5XZEvup-GtS48tWErXeiI5aWKxXd23vky2iDbE"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:3000/api/v1/loyalty/history/:customerId?page=1&limit=20",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "v1",
+                "loyalty",
+                "history",
+                ":customerId"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "20"
+                }
+              ],
+              "variable": [
+                {
+                  "key": "customerId",
+                  "value": "fb991cbd-1f4d-4d4f-8423-0c3328451b00"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Redeem Points",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjNDMwZWI5ZC04ZDE1LTRjNWItYjNiZS1iZDI3YTExNTE3ODUiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NzQxNzA2ODIsImV4cCI6MTc3NDI1NzA4Mn0.nQVCZ5XZEvup-GtS48tWErXeiI5aWKxXd23vky2iDbE"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customerId\": \"fb991cbd-1f4d-4d4f-8423-0c3328451b00\",\n  \"points\": 100\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/v1/loyalty/redeem",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "v1",
+                "loyalty",
+                "redeem"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Award Birthday Bonus",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjNDMwZWI5ZC04ZDE1LTRjNWItYjNiZS1iZDI3YTExNTE3ODUiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NzQxNzA2ODIsImV4cCI6MTc3NDI1NzA4Mn0.nQVCZ5XZEvup-GtS48tWErXeiI5aWKxXd23vky2iDbE"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:3000/api/v1/loyalty/birthday-bonus/:customerId",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "v1",
+                "loyalty",
+                "birthday-bonus",
+                ":customerId"
+              ],
+              "variable": [
+                {
+                  "key": "customerId",
+                  "value": "fb991cbd-1f4d-4d4f-8423-0c3328451b00"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Award Referral Bonus",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjNDMwZWI5ZC04ZDE1LTRjNWItYjNiZS1iZDI3YTExNTE3ODUiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NzQxNzA2ODIsImV4cCI6MTc3NDI1NzA4Mn0.nQVCZ5XZEvup-GtS48tWErXeiI5aWKxXd23vky2iDbE"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:3000/api/v1/loyalty/referral-bonus/:customerId",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "v1",
+                "loyalty",
+                "referral-bonus",
+                ":customerId"
+              ],
+              "variable": [
+                {
+                  "key": "customerId",
+                  "value": "fb991cbd-1f4d-4d4f-8423-0c3328451b00"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Billing",
+      "item": [
+        {
+          "name": "Preview Checkout",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjNDMwZWI5ZC04ZDE1LTRjNWItYjNiZS1iZDI3YTExNTE3ODUiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NzQxNzA2ODIsImV4cCI6MTc3NDI1NzA4Mn0.nQVCZ5XZEvup-GtS48tWErXeiI5aWKxXd23vky2iDbE"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customerId\": \"fb991cbd-1f4d-4d4f-8423-0c3328451b00\",\n  \"items\": [\n    {\n      \"itemType\": \"SERVICE\",\n      \"itemName\": \"Haircut\",\n      \"quantity\": 1,\n      \"unitPrice\": 500\n    },\n    {\n      \"itemType\": \"PRODUCT\",\n      \"itemName\": \"Hair Gel\",\n      \"quantity\": 2,\n      \"unitPrice\": 250\n    }\n  ],\n  \"redeemPoints\": 0\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/v1/billing/preview",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "v1",
+                "billing",
+                "preview"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Checkout",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjNDMwZWI5ZC04ZDE1LTRjNWItYjNiZS1iZDI3YTExNTE3ODUiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NzQxNzA2ODIsImV4cCI6MTc3NDI1NzA4Mn0.nQVCZ5XZEvup-GtS48tWErXeiI5aWKxXd23vky2iDbE"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customerId\": \"fb991cbd-1f4d-4d4f-8423-0c3328451b00\",\n  \"items\": [\n    {\n      \"itemType\": \"SERVICE\",\n      \"itemName\": \"Haircut\",\n      \"quantity\": 1,\n      \"unitPrice\": 500\n    },\n    {\n      \"itemType\": \"PRODUCT\",\n      \"itemName\": \"Hair Gel\",\n      \"quantity\": 2,\n      \"unitPrice\": 250\n    }\n  ],\n  \"redeemPoints\": 0,\n  \"paymentMethod\": \"CASH\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/v1/billing/checkout",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "v1",
+                "billing",
+                "checkout"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Reports",
+      "item": [
+        {
+          "name": "Membership Sales Report",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjNDMwZWI5ZC04ZDE1LTRjNWItYjNiZS1iZDI3YTExNTE3ODUiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NzQxNzA2ODIsImV4cCI6MTc3NDI1NzA4Mn0.nQVCZ5XZEvup-GtS48tWErXeiI5aWKxXd23vky2iDbE"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:3000/api/v1/reports/membership/sales?startDate=2026-01-01",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "v1",
+                "reports",
+                "membership",
+                "sales"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "2026-01-01"
+                },
+                {
+                  "key": "endDate",
+                  "value": "2026-12-31",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get Memberships Status Report",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjNDMwZWI5ZC04ZDE1LTRjNWItYjNiZS1iZDI3YTExNTE3ODUiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NzQxNzA2ODIsImV4cCI6MTc3NDI1NzA4Mn0.nQVCZ5XZEvup-GtS48tWErXeiI5aWKxXd23vky2iDbE"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:3000/api/v1/reports/membership/status",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "v1",
+                "reports",
+                "membership",
+                "status"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Membership Revenue",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjNDMwZWI5ZC04ZDE1LTRjNWItYjNiZS1iZDI3YTExNTE3ODUiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NzQxNzA2ODIsImV4cCI6MTc3NDI1NzA4Mn0.nQVCZ5XZEvup-GtS48tWErXeiI5aWKxXd23vky2iDbE"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:3000/api/v1/reports/membership/revenue",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "v1",
+                "reports",
+                "membership",
+                "revenue"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "2026-01-01",
+                  "disabled": true
+                },
+                {
+                  "key": "endDate",
+                  "value": "2026-12-31",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Renewal Rate",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjNDMwZWI5ZC04ZDE1LTRjNWItYjNiZS1iZDI3YTExNTE3ODUiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NzQxNzA2ODIsImV4cCI6MTc3NDI1NzA4Mn0.nQVCZ5XZEvup-GtS48tWErXeiI5aWKxXd23vky2iDbE"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:3000/api/v1/reports/membership/renewal-rate",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "v1",
+                "reports",
+                "membership",
+                "renewal-rate"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Points Issued",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjNDMwZWI5ZC04ZDE1LTRjNWItYjNiZS1iZDI3YTExNTE3ODUiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NzQxNzA2ODIsImV4cCI6MTc3NDI1NzA4Mn0.nQVCZ5XZEvup-GtS48tWErXeiI5aWKxXd23vky2iDbE"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:3000/api/v1/reports/loyalty/points-issued",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "v1",
+                "reports",
+                "loyalty",
+                "points-issued"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "2026-01-01",
+                  "disabled": true
+                },
+                {
+                  "key": "endDate",
+                  "value": "2026-12-31",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Points Redeemed",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjNDMwZWI5ZC04ZDE1LTRjNWItYjNiZS1iZDI3YTExNTE3ODUiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NzQxNzA2ODIsImV4cCI6MTc3NDI1NzA4Mn0.nQVCZ5XZEvup-GtS48tWErXeiI5aWKxXd23vky2iDbE"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:3000/api/v1/reports/loyalty/points-redeemed",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "v1",
+                "reports",
+                "loyalty",
+                "points-redeemed"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "2026-01-01",
+                  "disabled": true
+                },
+                {
+                  "key": "endDate",
+                  "value": "2026-12-31",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Outstanding Liability",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjNDMwZWI5ZC04ZDE1LTRjNWItYjNiZS1iZDI3YTExNTE3ODUiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NzQxNzA2ODIsImV4cCI6MTc3NDI1NzA4Mn0.nQVCZ5XZEvup-GtS48tWErXeiI5aWKxXd23vky2iDbE"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:3000/api/v1/reports/loyalty/outstanding-liability",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "v1",
+                "reports",
+                "loyalty",
+                "outstanding-liability"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Top Loyal Customers",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjNDMwZWI5ZC04ZDE1LTRjNWItYjNiZS1iZDI3YTExNTE3ODUiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NzQxNzA2ODIsImV4cCI6MTc3NDI1NzA4Mn0.nQVCZ5XZEvup-GtS48tWErXeiI5aWKxXd23vky2iDbE"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:3000/api/v1/reports/loyalty/top-customers?limit=10",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "v1",
+                "reports",
+                "loyalty",
+                "top-customers"
+              ],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Program ROI",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjNDMwZWI5ZC04ZDE1LTRjNWItYjNiZS1iZDI3YTExNTE3ODUiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NzQxNzA2ODIsImV4cCI6MTc3NDI1NzA4Mn0.nQVCZ5XZEvup-GtS48tWErXeiI5aWKxXd23vky2iDbE"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:3000/api/v1/reports/loyalty/roi",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "v1",
+                "reports",
+                "loyalty",
+                "roi"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "2026-01-01",
+                  "disabled": true
+                },
+                {
+                  "key": "endDate",
+                  "value": "2026-12-31",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Notifications",
+      "item": [
+        {
+          "name": "Get Customer Notifications",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjNDMwZWI5ZC04ZDE1LTRjNWItYjNiZS1iZDI3YTExNTE3ODUiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NzQxNzA2ODIsImV4cCI6MTc3NDI1NzA4Mn0.nQVCZ5XZEvup-GtS48tWErXeiI5aWKxXd23vky2iDbE"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:3000/api/v1/notifications/customer/:customerId?page=1&limit=20",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "v1",
+                "notifications",
+                "customer",
+                ":customerId"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "20"
+                }
+              ],
+              "variable": [
+                {
+                  "key": "customerId",
+                  "value": "fb991cbd-1f4d-4d4f-8423-0c3328451b00"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Send Promotional",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjNDMwZWI5ZC04ZDE1LTRjNWItYjNiZS1iZDI3YTExNTE3ODUiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NzQxNzA2ODIsImV4cCI6MTc3NDI1NzA4Mn0.nQVCZ5XZEvup-GtS48tWErXeiI5aWKxXd23vky2iDbE"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customerId\": \"fb991cbd-1f4d-4d4f-8423-0c3328451b00\",\n  \"title\": \"Special Offer!\",\n  \"message\": \"Get 20% off on any purchase...\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/v1/notifications/promotional",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "v1",
+                "notifications",
+                "promotional"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Retry Failed Notifications",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjNDMwZWI5ZC04ZDE1LTRjNWItYjNiZS1iZDI3YTExNTE3ODUiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NzQxNzA2ODIsImV4cCI6MTc3NDI1NzA4Mn0.nQVCZ5XZEvup-GtS48tWErXeiI5aWKxXd23vky2iDbE"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:3000/api/v1/notifications/retry-failed",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "v1",
+                "notifications",
+                "retry-failed"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
