@@ -26,7 +26,7 @@ const getLoginUser = (req, res) => {
   res.json({ success: true, data: { id, name, email, role } });
 };
 
-const getAllUser = (req, res) => {
+const getAllUser = async (req, res) => {
   try {
     const result = await authService.getAllUser();
     res.status(200).json({ success: true, data: result });
