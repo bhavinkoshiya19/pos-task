@@ -31,4 +31,15 @@ async function login({ email, password }) {
   };
 }
 
-module.exports = { register, login };
+async function getAllUser({ }) {
+
+  const user = await prisma.user.findMany({
+    orderBy: {
+      createdAt: 'desc', // Shows newly registered users first
+    },
+  })
+
+  return { user };
+}
+
+module.exports = { register, login, getAllUser };
