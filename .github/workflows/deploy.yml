@@ -1,0 +1,36 @@
+name: Deploy to AWS EC2
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploying code via SSH
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ vars.EC2_HOST }}
+          username: ubuntu
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            cd pos-task
+            
+            # 1. Fetch changes without moving your current local position yet
+            git fetch origin main
+            
+            # 2. Check if package.json has differences between your current code (HEAD) and incoming code (origin/main)
+            if ! git diff --quiet HEAD origin/main -- package.json; then
+              echo "🔄 package.json changed. Running npm install..."
+              git pull origin main
+              npm install
+            else
+              echo "⏩ No changes in package.json. Skipping npm install!"
+              git pull origin main
+            fi
+            
+            # 3. Always run database sync and restart the server
+            npx prisma db push
+            pm2 restart pos-api
