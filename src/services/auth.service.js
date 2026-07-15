@@ -31,8 +31,7 @@ async function login({ email, password }) {
   };
 }
 
-async function getAllUser({ }) {
-
+async function getAllUser() {
   const user = await prisma.user.findMany({
     orderBy: {
       createdAt: 'desc', // Shows newly registered users first
